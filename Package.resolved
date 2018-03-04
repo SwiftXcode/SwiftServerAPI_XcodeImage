@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "MicroExpress",
+        "repositoryURL": "https://github.com/AlwaysRightInstitute/MicroExpress.git",
+        "state": {
+          "branch": null,
+          "revision": "06f66cf05a8cd8a1e0dca120d615afbc470bde10",
+          "version": "0.0.1"
+        }
+      },
+      {
+        "package": "SwiftServerHttp",
+        "repositoryURL": "https://github.com/swift-server/http",
+        "state": {
+          "branch": null,
+          "revision": "f8516cc7252cc1e4a9f31ac5fa35175acdd2f47d",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

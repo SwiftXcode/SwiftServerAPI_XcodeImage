@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Kind</key>
+    <string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
+  
+    <key>Identifier</key>
+    <string>de.zeezide.dt.unit.swiftxcode.images.swift.server.wgapi</string>
+
+    <key>Ancestors</key>
+    <array>
+      <string>de.zeezide.dt.unit.spmToolBase</string>
+    </array>
+
+    <key>Concrete</key>
+    <true/>
+
+    <key>Description</key>
+    <string>This template provides a starting point for using the official Swift Server HTTP API.</string>
+    
+    <key>Targets</key>
+    <array>
+      <dict>
+        <key>ProductType</key>
+        <string>com.apple.product-type.tool</string>
+        <key>TargetIdentifier</key>
+        <string>com.apple.dt.commandLineToolTarget</string>
+
+        <key>BuildPhases</key>
+        <array>
+          <dict>
+            <key>SortOrder</key>    <integer>0</integer>
+            <key>Name</key>
+            <string>Build Swift Package Manager Dependencies</string>
+            <key>Class</key>      <string>ShellScript</string>
+            <key>ShellPath</key>  <string>/bin/sh</string>
+            <key>ShellScript</key>
+            <string>SPM_IMAGE=SwiftServerAPI verbose=no swift xcode build</string>
+          </dict>
+          <dict><key>Class</key><string>Sources</string>   </dict>
+          <dict><key>Class</key><string>Frameworks</string></dict>
+        </array>
+      </dict>
+    </array>
+    
+    <key>Nodes</key>
+    <array>
+      <string>Package.swift:spmpackagedecl:deps:SwiftServerAPI(url: "https://github.com/swift-server/http", 
+                 from: "0.1.0")</string>
+      <string>Package.swift:spmpackagedecl:targets:default:HTTP</string>
+      
+      <string>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift:imports:import:Foundation</string>
+      <string>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift:imports:import:HTTP</string>
+      <string>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift:body:SwiftServerAPIMain</string>
+    </array>
+    
+    
+    <!-- ***************************************************** -->
+    <!-- TODO: indent, separate out common stuff -->
+    <key>Definitions</key>
+    <dict>
+      <!-- SwiftServerAPI stuff -->
+      
+      <key>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift</key>
+      <dict>
+        <key>Path</key><string>Sources/main.swift</string>
+      </dict>
+      <key>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift:body:SwiftServerAPIMain</key>
+      <string>func handler(request: HTTPRequest, response: HTTPResponseWriter) 
+       -> HTTPBodyProcessing 
+{        
+    response.writeHeader(status: .ok) 
+    response.writeBody("Hello, World!\n") 
+    response.done() 
+    return .discardBody 
+}
+
+let server = HTTPServer()
+do {
+    try server.start(port: 1337, handler: handler)
+}
+catch {
+    print("failed to start server:", error)
+    exit(42)
+}
+
+RunLoop.current.run()</string>
+    </dict>
+
+
+    <!-- *************** OPTIONS ********************************* -->
+
+    <key>Options</key>
+    <array>
+      <dict>
+        <key>Identifier</key>   <string>zzSwiftServerAPIMicroExpress</string>
+        <key>Name</key>         <string>Use the µExpress module.</string>
+        <key>Description</key>
+        <string>An Express-like micro server framework on top of the Swift Server API.</string>
+        
+        <key>SortOrder</key>    <integer>10</integer>
+        <key>Type</key>         <string>checkbox</string>
+        <key>Default</key>      <string>true</string>
+        <key>NotPersisted</key> <true/>
+        
+        <key>Units</key>
+        <dict>
+          <key>true</key>
+          <array>
+            <dict>
+              <key>Nodes</key>
+              <array>
+                <string>Package.swift:spmpackagedecl:deps:MicroExpress(url: "https://github.com/AlwaysRightInstitute/MicroExpress.git", 
+                 from: "0.0.1")</string>
+                <string>Package.swift:spmpackagedecl:targets:default:MicroExpress</string>
+                <string>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift:imports:import:MicroExpress</string>
+              </array>
+              
+              <key>Definitions</key>
+              <dict>
+                <key>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift:body:SwiftServerAPIMain</key>
+                <string>let app = Express()
+
+app.get("/moo") { req, res, next in
+  try res.send("Muhhh")
+}
+app.get("/json") { _, res, _ in
+  try res.json([ "a": 42, "b": 1337 ])
+}
+app.get("/") { _, res, _ in
+  try res.send("Homepage")
+}
+
+app.listen(1337)</string>
+              </dict>
+            </dict>
+          </array>
+        </dict>
+      </dict>
+
+    </array>
+  </dict>
+</plist>
