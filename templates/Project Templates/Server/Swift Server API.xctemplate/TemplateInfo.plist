@@ -50,9 +50,9 @@
                  from: "0.1.0")</string>
       <string>Package.swift:spmpackagedecl:targets:default:HTTP</string>
       
-      <string>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift:imports:import:Foundation</string>
-      <string>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift:imports:import:HTTP</string>
-      <string>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift:body:SwiftServerAPIMain</string>
+      <string>Sources/___PACKAGENAME___/main.swift:imports:import:Foundation</string>
+      <string>Sources/___PACKAGENAME___/main.swift:imports:import:HTTP</string>
+      <string>Sources/___PACKAGENAME___/main.swift:body:SwiftServerAPIMain</string>
     </array>
     
     
@@ -62,11 +62,11 @@
     <dict>
       <!-- SwiftServerAPI stuff -->
       
-      <key>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift</key>
+      <key>Sources/___PACKAGENAME___/main.swift</key>
       <dict>
         <key>Path</key><string>Sources/main.swift</string>
       </dict>
-      <key>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift:body:SwiftServerAPIMain</key>
+      <key>Sources/___PACKAGENAME___/main.swift:body:SwiftServerAPIMain</key>
       <string>func handler(request: HTTPRequest, response: HTTPResponseWriter) 
        -> HTTPBodyProcessing 
 {        
@@ -114,12 +114,12 @@ RunLoop.current.run()</string>
                 <string>Package.swift:spmpackagedecl:deps:MicroExpress(url: "https://github.com/AlwaysRightInstitute/MicroExpress.git", 
                  from: "0.0.1")</string>
                 <string>Package.swift:spmpackagedecl:targets:default:MicroExpress</string>
-                <string>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift:imports:import:MicroExpress</string>
+                <string>Sources/___PACKAGENAME___/main.swift:imports:import:MicroExpress</string>
               </array>
               
               <key>Definitions</key>
               <dict>
-                <key>Sources/___PACKAGENAMEASIDENTIFIER___/main.swift:body:SwiftServerAPIMain</key>
+                <key>Sources/___PACKAGENAME___/main.swift:body:SwiftServerAPIMain</key>
                 <string>let app = Express()
 
 app.get("/moo") { req, res, next in
